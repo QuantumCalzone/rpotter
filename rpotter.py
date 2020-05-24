@@ -51,8 +51,6 @@ lk_params = dict( winSize  = (15,15),
 dilation_params = (5, 5)
 movment_threshold = 80
 
-Scan()
-
 # Scan starts camera input and runs FindNewPoints
 def Scan():
     cv2.namedWindow("Raspberry Potter")
@@ -221,3 +219,6 @@ def IsGesture(a,b,c,d,i):
 def End():
 	cam.close()
 	cv2.destroyAllWindows()
+
+
+Scan()
