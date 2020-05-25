@@ -20,6 +20,7 @@ Copyright (c) 2015-2017 Sean O'Brien.  Permission is hereby granted, free of cha
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '''
+
 import io
 import sys
 sys.path.insert(1, '/usr/lib/python2.7/dist-packages/picamera')
@@ -99,7 +100,7 @@ def FindNewPoints():
         ig = [[0] for x in range(20)]
         print("finding...")
         TrackWand()
-	    #This resets the scene every three seconds
+        #This resets the scene every three seconds
         threading.Timer(3, FindNewPoints).start()
     except:
         e = sys.exc_info()[1]
@@ -133,7 +134,7 @@ def TrackWand():
         p0 = p0[:,:,0:2]
     except:
         print("No points found")
-	# Create a mask image for drawing purposes
+    # Create a mask image for drawing purposes
     mask = np.zeros_like(old_frame)
 
     while True:
@@ -239,8 +240,8 @@ def End():
     if _verbose:
         print("TrackWand")
 
-	cam.close()
-	cv2.destroyAllWindows()
+    cam.close()
+    cv2.destroyAllWindows()
 
 
 Scan()
