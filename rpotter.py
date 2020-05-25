@@ -62,6 +62,7 @@ def scan():
         print("scan")
 
     cv2.namedWindow("Raspberry Potter")
+    cam = picamera.PiCamera()
     cam.resolution = (640, 480)
     cam.framerate = 24
     try:
