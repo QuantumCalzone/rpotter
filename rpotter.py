@@ -83,7 +83,7 @@ def find_new_points():
         except:
             print("find_new_points | resetting points")
 
-        data = np.fromstring(stream.getvalue(), dtype=np.uint8)
+        data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         old_frame = cv2.imdecode(data, 1)
         cv2.flip(old_frame, 1, old_frame)
         old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
@@ -119,7 +119,7 @@ def track_wand():
         old_frame = cam.capture(stream, format='jpeg')
     except:
         print("track_wand | resetting points")
-    data = np.fromstring(stream.getvalue(), dtype=np.uint8)
+    data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
     old_frame = cv2.imdecode(data, 1)
     cv2.flip(old_frame,1,old_frame)
     old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
@@ -140,7 +140,7 @@ def track_wand():
 
     while True:
         frame = cam.capture(stream, format='jpeg')
-        data2 = np.fromstring(stream.getvalue(), dtype=np.uint8)
+        data2 = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         frame = cv2.imdecode(data2, 1)
         cv2.flip(frame,1,frame)
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -183,7 +183,7 @@ def track_wand():
 
         # get next frame
         frame = cam.capture(stream, format='jpeg')
-        data3 = np.fromstring(stream.getvalue(), dtype=np.uint8)
+        data3 = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         frame = cv2.imdecode(data3, 1)
 
         # Now update the previous frame and previous points
