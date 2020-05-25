@@ -85,7 +85,6 @@ def find_new_points():
 
         data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         old_frame = cv2.imdecode(data, 1)
-        cv2.imshow("Raspberry Potter", old_frame)
         cv2.flip(old_frame, 1, old_frame)
         old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
         # cv2.equalizeHist(old_gray,old_gray)
@@ -123,7 +122,6 @@ def track_wand():
 
     data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
     old_frame = cv2.imdecode(data, 1)
-    cv2.imshow("Raspberry Potter", old_frame)
     cv2.flip(old_frame, 1, old_frame)
     old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
     # cv2.equalizeHist(old_gray,old_gray)
@@ -145,7 +143,6 @@ def track_wand():
         frame = cam.capture(stream, format='jpeg')
         data2 = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         frame = cv2.imdecode(data2, 1)
-        cv2.imshow("Raspberry Potter", frame)
         cv2.flip(frame, 1, frame)
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # equalizeHist(frame_gray,frame_gray)
@@ -181,7 +178,7 @@ def track_wand():
             break
         img = cv2.add(frame, mask)
 
-        cv2.putText(img, "Press ESC to close.", (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,255,255))
+        cv2.putText(img, "Press ESC to close.", (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255))
         cv2.imshow("Raspberry Potter", frame)
 
         # get next frame
