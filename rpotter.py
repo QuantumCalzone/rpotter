@@ -119,6 +119,7 @@ def track_wand():
         old_frame = cam.capture(stream, format='jpeg')
     except:
         print("track_wand | resetting points")
+    cv2.waitKey()
     data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
     old_frame = cv2.imdecode(data, 1)
     cv2.flip(old_frame,1,old_frame)
