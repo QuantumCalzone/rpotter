@@ -53,7 +53,7 @@ dilation_params = (5, 5)
 movment_threshold = 80
 
 stream = io.BytesIO()
-cam = None
+cam = picamera.PiCamera()
 
 
 # Scan starts camera input and runs FindNewPoints
@@ -62,7 +62,6 @@ def scan():
         print("scan")
 
     cv2.namedWindow("Raspberry Potter")
-    cam = picamera.PiCamera()
     cam.resolution = (640, 480)
     cam.framerate = 24
     try:
@@ -85,8 +84,8 @@ def find_new_points():
         try:
             old_frame = cam.capture(stream, format='jpeg')
         except:
-
             print("find_new_points | resetting points")
+
         data = np.fromstring(stream.getvalue(), dtype=np.uint8)
         old_frame = cv2.imdecode(data, 1)
         cv2.flip(old_frame, 1, old_frame)
