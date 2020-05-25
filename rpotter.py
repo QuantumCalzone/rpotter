@@ -53,7 +53,7 @@ dilation_params = (5, 5)
 movment_threshold = 80
 
 stream = io.BytesIO()
-cam = picamera.PiCamera()
+cam = None
 
 
 # Scan starts camera input and runs FindNewPoints
