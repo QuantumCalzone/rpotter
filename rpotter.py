@@ -217,7 +217,19 @@ def IsGesture(a,b,c,d,i):
     print(astr)
 
 def End():
-	# cam.close()
+	cam.close()
 	cv2.destroyAllWindows()
+
+cv2.namedWindow("Raspberry Potter")
+stream = io.BytesIO()
+cam = picamera.PiCamera()
+cam.resolution = (640, 480)
+cam.framerate = 24
+try:
+    while True:
+        FindNewPoints()
+except KeyboardInterrupt:
+    End()
+    exit
 
 Scan()
