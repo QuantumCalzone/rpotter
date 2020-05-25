@@ -51,6 +51,9 @@ lk_params = dict( winSize  = (15,15),
 dilation_params = (5, 5)
 movment_threshold = 80
 
+stream = None
+cam = None
+
 # Scan starts camera input and runs FindNewPoints
 def Scan():
     cv2.namedWindow("Raspberry Potter")
