@@ -145,6 +145,7 @@ def track_wand():
         frame = cv2.imdecode(data2, 1)
         cv2.flip(frame, 1, frame)
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        cv2.imshow("Raspberry Potter", frame)
         # equalizeHist(frame_gray,frame_gray)
         # frame_gray = GaussianBlur(frame_gray,(9,9),1.5)
         # dilate_kernel = np.ones(dilation_params, np.uint8)
@@ -179,7 +180,6 @@ def track_wand():
         img = cv2.add(frame, mask)
 
         cv2.putText(img, "Press ESC to close.", (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255))
-        cv2.imshow("Raspberry Potter", frame)
 
         # get next frame
         frame = cam.capture(stream, format='jpeg')
