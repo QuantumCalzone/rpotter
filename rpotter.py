@@ -31,6 +31,8 @@ import math
 import time
 import pigpio
 
+_verbose = True
+
 GPIOS = 32
 MODES = ["INPUT", "OUTPUT", "ALT5", "ALT4", "ALT0", "ALT1", "ALT2", "ALT3"]
 
@@ -54,8 +56,11 @@ movment_threshold = 80
 stream = io.BytesIO()
 cam = picamera.PiCamera()
 
+
 # Scan starts camera input and runs FindNewPoints
 def Scan():
+    if _verbose:
+        print("Scan")
     cv2.namedWindow("Raspberry Potter")
     cam.resolution = (640, 480)
     cam.framerate = 24
@@ -66,8 +71,11 @@ def Scan():
         End()
         exit
 
+
 #FindWand is called to find all potential wands in a scene.  These are then tracked as points for movement.  The scene is reset every 3 seconds.
 def FindNewPoints():
+    if _verbose:
+        print("FindNewPoints")
     global old_frame,old_gray,p0,mask,color,ig,img,frame
     try:
         try:
@@ -99,7 +107,11 @@ def FindNewPoints():
         End()
         exit
 
+
 def TrackWand():
+    if _verbose:
+        print("TrackWand")
+
     global old_frame,old_gray,p0,mask,color,ig,img,frame
     color = (0,0,255)
     try:
@@ -178,6 +190,9 @@ def TrackWand():
 
 #Spell is called to translate a named spell into GPIO or other actions
 def Spell(spell):
+    if _verbose:
+        print(f"Spell ( spell: {spell} )")
+
     #clear all checks
     ig = [[0] for x in range(15)]
     #Invoke IoT (or any other) actions here
@@ -197,7 +212,10 @@ def Spell(spell):
 
 #IsGesture is called to determine whether a gesture is found within tracked points
 def IsGesture(a,b,c,d,i):
-    print("point: %s" % i)
+    if _verbose:
+        print(f"IsGesture ( a: {a} , b: {b} , c: {c} , d: {d} , i: {i} )")
+    # print("point: %s" % i)
+
     #record basic movements - TODO: trained gestures
     if ((a<(c-5))&(abs(b-d)<1)):
         ig[i].append("left")
@@ -218,6 +236,9 @@ def IsGesture(a,b,c,d,i):
     print(astr)
 
 def End():
+    if _verbose:
+        print("TrackWand")
+
 	cam.close()
 	cv2.destroyAllWindows()
 
