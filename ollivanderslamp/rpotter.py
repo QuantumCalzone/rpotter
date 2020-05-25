@@ -138,7 +138,7 @@ def FindWand():
     global rval,old_frame,old_gray,p0,mask,color,ig,img,frame
     try:
         rval, old_frame = cam.read()
-    cv2.flip(old_frame,1,old_frame)
+        cv2.flip(old_frame,1,old_frame)
         old_gray = cv2.cvtColor(old_frame,cv2.COLOR_BGR2GRAY)
         equalizeHist(old_gray)
     old_gray = GaussianBlur(old_gray,(9,9),1.5)
