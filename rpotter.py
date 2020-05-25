@@ -217,7 +217,7 @@ def IsGesture(a,b,c,d,i):
     print(astr)
 
 def End():
-	cam.close()
+	# cam.close()
 	cv2.destroyAllWindows()
 
 Scan()
