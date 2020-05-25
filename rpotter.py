@@ -85,6 +85,7 @@ def find_new_points():
 
         data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         old_frame = cv2.imdecode(data, 1)
+        cv2.imshow("Raspberry Potter", old_frame)
         cv2.flip(old_frame, 1, old_frame)
         old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
         # cv2.equalizeHist(old_gray,old_gray)
@@ -122,6 +123,7 @@ def track_wand():
 
     data = np.frombuffer(stream.getvalue(), dtype=np.uint8)
     old_frame = cv2.imdecode(data, 1)
+    cv2.imshow("Raspberry Potter", old_frame)
     cv2.flip(old_frame, 1, old_frame)
     old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
     # cv2.equalizeHist(old_gray,old_gray)
@@ -130,7 +132,7 @@ def track_wand():
     # old_gray = cv2.dilate(old_gray, dilate_kernel, iterations=1)
 
     # Take first frame and find circles in it
-    p0 = cv2.HoughCircles(old_gray,cv2.HOUGH_GRADIENT,3,100,param1=100,param2=30,minRadius=4,maxRadius=15)
+    p0 = cv2.HoughCircles(old_gray, cv2.HOUGH_GRADIENT, 3, 100, param1=100, param2=30, minRadius=4, maxRadius=15)
     try:
         p0.shape = (p0.shape[1], 1, p0.shape[2])
         p0 = p0[:, :, 0:2]
@@ -143,6 +145,7 @@ def track_wand():
         frame = cam.capture(stream, format='jpeg')
         data2 = np.frombuffer(stream.getvalue(), dtype=np.uint8)
         frame = cv2.imdecode(data2, 1)
+        cv2.imshow("Raspberry Potter", frame)
         cv2.flip(frame, 1, frame)
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # equalizeHist(frame_gray,frame_gray)
@@ -155,7 +158,6 @@ def track_wand():
             # Select good points
             good_new = p1[st == 1]
             good_old = p0[st == 1]
-            cv2.imshow("Raspberry Potter", good_new)
             # draw the tracks
             for i, (new, old) in enumerate(zip(good_new, good_old)):
                 a, b = new.ravel()
